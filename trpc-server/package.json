@@ -20,7 +20,8 @@
       "test:e2e": "vitest .e2e.test.ts",
       "test:e2e:run": "pnpm test:e2e --run",
       "test:coverage": "pnpm pm2:start && vitest run --coverage && pnpm pm2:delete",
-      "test:coverage:preview": "pnpm test:coverage && vite preview --outDir ./coverage --open"
+      "test:coverage:preview": "pnpm test:coverage && vite preview --outDir ./coverage --open",
+      "test": "jest"
    },
    "dependencies": {
       "@trpc/server": "^10.45.2",
@@ -50,6 +51,13 @@
       "@trivago/prettier-plugin-sort-imports": "^4.2.0",
       "pm2": "^5.3.0",
       "vitest": "^0.34.1",
-      "vite-tsconfig-paths": "^4.2.0"
+      "vite-tsconfig-paths": "^4.2.0",
+      "ts-jest": "^29.2.5",
+      "babel-jest": "^29.7.0",
+      "@babel/core": "^7.26.9",
+      "@babel/preset-env": "^7.26.9",
+      "jest": "^29.7.0",
+      "jest-environment-jsdom": "^29.7.0",
+      "@types/jest": "^29.5.14"
    }
 }
