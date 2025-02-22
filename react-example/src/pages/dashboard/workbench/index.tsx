@@ -419,7 +419,8 @@ function Workbench() {
 
 	// onSubmit={handleSubmit(handleClick)}
 	const tryTrpc = async () =>{
-		let useQuery = await trpcClient.getRole.query()
+
+		let useQuery = await trpcClient.role.getRole.query()
 		//console.log(useQuery)
 		console.log(useQuery);
 

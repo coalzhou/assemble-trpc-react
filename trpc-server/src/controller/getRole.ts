@@ -1,8 +1,14 @@
-import { userProcedure } from '../trpc'
+import { userProcedure,authedProcedure } from '../trpc'
+import { TRPCError } from '@trpc/server'
 
-export const getRole = userProcedure.query(() => {
+export const getRole = authedProcedure.query((ctx) => {
+
+    //throw new TRPCError({code:'UNAUTHORIZED'})
+    return { role: 'USER' as const }
+})
+export const getRole1 = userProcedure.query(() => {
 
 
     return {
-    role: 'USER' as const }
+        menu: 'role'}
 })
