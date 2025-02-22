@@ -449,7 +449,7 @@ function Workbench() {
 						<Button variant="contained" sx={{ mt: 1 }} color="primary" onClick={handleClick}>
 							submit
 						</Button>
-						<Button variant="contained" sx={{ mt: 1 }} color="primary" onClick={tryTrpc}>
+						<Button variant="contained" sx={{ mt: 1, ml: 1 }} color="primary" onClick={tryTrpc}>
 							try trpc
 						</Button>
 
