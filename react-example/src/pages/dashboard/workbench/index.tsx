@@ -1,3 +1,4 @@
+
 /*import { Col, Row, Space } from "antd";
 
 import AreaDownload from "./area-download";
@@ -39,6 +40,10 @@ import Autocomplete, { type AutocompleteCloseReason, autocompleteClasses } from 
 import { Settings as SettingsIcon, Close as CloseIcon, Done as DoneIcon } from "@mui/icons-material";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
+import trpcClient from '@/utils/trpc'
+
+
+
 interface User {
 	name: string;
 	age: number;
@@ -74,6 +79,8 @@ function Workbench() {
 
 		//
 	};
+
+
 
 	// region GitHub type Autocomplete
 	interface PopperComponentProps {
@@ -409,7 +416,15 @@ function Workbench() {
 		defaultValues: defaultObj,
 	});
 
+
 	// onSubmit={handleSubmit(handleClick)}
+	const tryTrpc = async () =>{
+		let useQuery = await trpcClient.getRole.query()
+		//console.log(useQuery)
+		console.log(useQuery);
+
+
+	}
 	return (
 		<div className="p-2">
 			<div className="mt-2">
@@ -434,6 +449,10 @@ function Workbench() {
 						<Button variant="contained" sx={{ mt: 1 }} color="primary" onClick={handleClick}>
 							submit
 						</Button>
+						<Button variant="contained" sx={{ mt: 1 }} color="primary" onClick={tryTrpc}>
+							try trpc
+						</Button>
+
 					</div>
 				</form>
 			</div>

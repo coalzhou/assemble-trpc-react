@@ -6,7 +6,7 @@ import { type RequestHandler } from 'express-serve-static-core'
 
 import { isProd } from '../env'
 
-import { initializeTrpc } from '../trpc/api/router'
+import { initializeTrpc } from '../trpcRouter/router'
 
 export class Middlewares {
    public static config(app: express.Application) {
@@ -14,9 +14,9 @@ export class Middlewares {
 
       initializeTrpc(app)
 
-      if (isProd) {
+      /*if (isProd) {
          this.serveWeb(app)
-      }
+      }*/
    }
 
    private static serveWeb(app: express.Application) {

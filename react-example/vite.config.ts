@@ -58,6 +58,13 @@ export default defineConfig(({ mode }) => {
 					rewrite: (path) => path.replace(/^\/api/, ""),
 					secure: false,
 				},
+				"/backend-api": {
+					target: "http://localhost:9540",
+					changeOrigin: true,
+					rewrite: (path) => path.replace(/^\/backend-api/, ""),
+					secure: false,
+				},
+
 			},
 		},
 		resolve: {
