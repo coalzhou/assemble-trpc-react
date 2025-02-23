@@ -27,6 +27,7 @@
       "@trpc/client": "11.0.0-rc.800",
       "@trpc/server": "11.0.0-rc.800",
       "cookie-parser": "^1.4.6",
+      "cors": "^2.8.5",
       "express": "^4.18.2",
       "express-serve-static-core": "^0.1.1",
       "ioredis": "^5.5.0",

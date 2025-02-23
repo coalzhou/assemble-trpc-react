@@ -1,7 +1,12 @@
 {
    "compilerOptions": {
       "baseUrl": "src",
-      "outDir": "dist"
+      "outDir": "dist",
+      "target": "ESNext",
+      "skipLibCheck": true,
+      "allowJs": true, // 允许编译JavaScript文件
+      "useDefineForClassFields": true,
+      "moduleResolution": "node"
    },
    "include": [
       "src",

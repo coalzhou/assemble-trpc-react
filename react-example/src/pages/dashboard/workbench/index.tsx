@@ -39,7 +39,6 @@ import { useTheme, styled } from "@mui/material/styles";
 import Autocomplete, { type AutocompleteCloseReason, autocompleteClasses } from "@mui/material/Autocomplete";
 import { Settings as SettingsIcon, Close as CloseIcon, Done as DoneIcon } from "@mui/icons-material";
 import { useForm, type SubmitHandler } from "react-hook-form";
-
 import trpcClient from '@/utils/trpc'
 
 
@@ -417,13 +416,12 @@ function Workbench() {
 	});
 
 
-	// onSubmit={handleSubmit(handleClick)}
+
 	const tryTrpc = async () =>{
 
-		let useQuery = await trpcClient.role.getRole.query()
+		let useQuery = await trpcClient.role.deleteUser.mutate()
 		//console.log(useQuery)
 		console.log(useQuery);
-
 
 	}
 	return (

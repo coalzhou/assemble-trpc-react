@@ -1,11 +1,14 @@
 
-import {createTRPCProxyClient, httpBatchLink, TRPCClient, TRPCLink} from '@trpc/client';
+import {createTRPCProxyClient,httpBatchLink, TRPCClient, TRPCLink} from '@trpc/client';
+
 import {type AppRouter} from '../../../trpc-server/src/trpcRouter/router.js'
 //import { createTRPCContext } from '@trpc/tanstack-react-query';
 import userStore from "@/store/userStore";
 import {observable} from "@trpc/server/observable";
 
+
 //export const queryClient = getQueryClient();
+
 
 function responseInterceptorLink(): TRPCLink<AppRouter> {
     return () =>{
@@ -13,13 +16,14 @@ function responseInterceptorLink(): TRPCLink<AppRouter> {
             return observable((observer) => {
                 const unsubscribe = next(op).subscribe({
                     next(value) {
-                        console.log('we received value', value);
+                        //console.log('we received value', value);
                         observer.next(value);
                     },
                     error(err) {
                         console.log('we received error', err);
                         console.log(err.message); // UNAUTHORIZED
-                        debugger
+
+
                         observer.error(err);
                     },
                     complete() {

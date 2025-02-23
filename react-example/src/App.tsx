@@ -7,11 +7,9 @@ import { MotionLazy } from "./components/animate/motion-lazy";
 import Toast from "./components/toast";
 import { AntdAdapter } from "./theme/adapter/antd.adapter";
 import { ThemeProvider } from "./theme/theme-provider";
-
+import React from 'react'
 
 function App() {
-
-
 
 	return (
 		<ThemeProvider adapters={[AntdAdapter]}>

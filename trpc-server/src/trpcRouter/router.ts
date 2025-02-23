@@ -5,7 +5,7 @@ import { createExpressMiddleware } from '@trpc/server/adapters/express'
 import type { Application } from 'express'
 
 import { router } from '../trpc'
-
+import * as cors from 'cors'
 import * as role from '../controller/getRole'
 
 const appRouter = router({ role })
@@ -26,6 +26,7 @@ export const initializeTrpc = async (app: Application) => {
       createExpressMiddleware({
          router: appRouter,
          createContext,
+         middleware: cors()
       })
    )
 }
