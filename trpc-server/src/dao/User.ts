@@ -13,9 +13,16 @@ User.init({
    username: {
       type: DataTypes.STRING,
    },
+   password:{
+      type: DataTypes.STRING,
+   },
    age: {
       type: DataTypes.INTEGER,
    },
+   realName:{
+      type: DataTypes.STRING,
+   },
+
 },{
    sequelize
 });

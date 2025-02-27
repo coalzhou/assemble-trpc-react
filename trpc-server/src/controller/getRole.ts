@@ -1,6 +1,8 @@
 import { userProcedure,authedProcedure } from '../trpc'
 import { TRPCError } from '@trpc/server'
 import User from '../dao/User'
+
+
 export const getRole = authedProcedure.query((ctx) => {
 
     //throw new TRPCError({code:'UNAUTHORIZED'})
@@ -12,7 +14,7 @@ export const getRole1 = userProcedure.query(() => {
         menu: 'role'}
 })
 export const syncUser = userProcedure.mutation(() => {
-    User.sync()
+    User.sync({ force: true })
     return 'success'
 })
 export const createUser = userProcedure.mutation(async () => {
@@ -30,6 +32,9 @@ export const getUser = userProcedure.query(async () => {
 })
 export const deleteUser = userProcedure.mutation(async () => {
     let user = await User.findByPk(1)
+
     await user.destroy()
 
 })
+
+

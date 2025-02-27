@@ -7,8 +7,9 @@ import type { Application } from 'express'
 import { router } from '../trpc'
 import * as cors from 'cors'
 import * as role from '../controller/getRole'
+import * as user from '../controller/user'
 
-const appRouter = router({ role })
+const appRouter = router({ role, user })
 export type AppRouter = typeof appRouter
 
 export type Context = Awaited<ReturnType<typeof createContext>>

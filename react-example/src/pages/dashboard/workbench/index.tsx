@@ -424,6 +424,9 @@ function Workbench() {
 		console.log(useQuery);
 
 	}
+	const login = async () => {
+		await trpcClient.user.login.query({username:'tony', password:'123456'})
+	}
 	return (
 		<div className="p-2">
 			<div className="mt-2">
@@ -450,6 +453,13 @@ function Workbench() {
 						</Button>
 						<Button variant="contained" sx={{ mt: 1, ml: 1 }} color="primary" onClick={tryTrpc}>
 							try trpc
+						</Button>
+						<Button variant="contained" sx={{ mt: 1, ml: 1 }} color="primary" onClick={()=> trpcClient.role.syncUser.mutate()}>
+							sync user
+						</Button>
+
+						<Button variant="contained" sx={{ mt: 1, ml: 1 }} color="primary" onClick={login}>
+							login
 						</Button>
 
 					</div>
