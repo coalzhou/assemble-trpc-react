@@ -1,6 +1,3 @@
-import 'dotenv/config'
-
-//import './aliases'
 
 import { HttpServer } from './core'
 
