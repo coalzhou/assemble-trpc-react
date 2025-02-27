@@ -1,5 +1,5 @@
 import { cleanEnv, port, str as string } from 'envalid'
-
+import {v4} from 'uuid'
 
 describe('test001', () => {
    test('test002', async () => {
@@ -28,6 +28,9 @@ describe('test001', () => {
          default: 'development',
          docs: 'https://nodejs.dev/en/learn/how-to-read-environment-variables-from-nodejs/',
       })
+   })
+   test('test004', ()=>{
+      console.log(v4()) // 6e4bfa0e-bc70-42d2-b060-44775334ad93
    })
 })
 
