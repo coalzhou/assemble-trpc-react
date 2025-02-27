@@ -1,4 +1,4 @@
-import { authedProcedure } from '../trpc'
+import { authedProcedure, userProcedure } from '../trpc'
 import { z } from 'zod'
 import * as bcrypt from 'bcryptjs'
 import User from '../dao/User'
@@ -19,7 +19,7 @@ export const login = authedProcedure
       })
       if(!user)
          throw new Error('username or password not correct')
-      const r  = bcrypt.compareSync(password, user.get('password').toString())
+      const r  = bcrypt.compareSync(password, user.password)
       if(r){
          return {
             "state": {
@@ -97,4 +97,16 @@ export const login = authedProcedure
          throw new Error('username or password not correct')
       }
 
+})
+class UserObj{
+   id?: number
+   username?: string
+   password?: string
+   age?: number
+   realName?: string
+}
+export const createUser = userProcedure.input(z.instanceof(UserObj)).mutation(async ({input}) => {
+   const user = await User.create({username:'tony', age: 19})
+   console.log(input)
+   return JSON.stringify(user)
 })

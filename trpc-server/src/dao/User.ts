@@ -2,7 +2,11 @@ import { Sequelize, DataTypes, Model  } from 'sequelize'
 import {sequelize} from '../env/db'
 
 class User extends Model{
-
+   declare id: number
+   declare username: string
+   declare password: string
+   declare age: number
+   declare realName: string
 }
 User.init({
    id: {

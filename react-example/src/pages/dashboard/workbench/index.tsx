@@ -427,6 +427,21 @@ function Workbench() {
 	const login = async () => {
 		await trpcClient.user.login.query({username:'tony', password:'123456'})
 	}
+	class UserObj{
+		id?: number
+		username?: string
+		password?: string
+		age?: number
+		realName?: string
+	}
+	const createUser = async () =>{
+
+		let user = new UserObj()
+		user.username = 'jack'
+
+		const res = await trpcClient.user.createUser.mutate(user)
+		console.log(res)
+	}
 	return (
 		<div className="p-2">
 			<div className="mt-2">
@@ -461,7 +476,9 @@ function Workbench() {
 						<Button variant="contained" sx={{ mt: 1, ml: 1 }} color="primary" onClick={login}>
 							login
 						</Button>
-
+						<Button variant="contained" sx={{ mt: 1, ml: 1 }} color="primary" onClick={createUser}>
+							create user
+						</Button>
 					</div>
 				</form>
 			</div>
