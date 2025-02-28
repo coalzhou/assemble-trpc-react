@@ -1,6 +1,14 @@
 import { cleanEnv, port, str as string } from 'envalid'
 import {v4} from 'uuid'
 
+
+const pino = require('pino')
+const rfs = require('rotating-file-stream')
+const { tmpdir } = require('node:os')
+const { join } = require('node:path')
+const pretty = require('pino-pretty')
+const multistream = require('pino-multi-stream').multistream
+
 describe('test001', () => {
    test('test002', async () => {
       console.log('hello')
@@ -31,6 +39,24 @@ describe('test001', () => {
    })
    test('test004', ()=>{
       console.log(v4()) // 6e4bfa0e-bc70-42d2-b060-44775334ad93
+   })
+   test('test005', ()=>{
+      //console.log(tmpdir())
+      const stream = rfs.createStream('trpc-logger.log',{
+         size: '10M',
+         interval: "1d",
+         path: "./logs"
+      })
+      // process.stdout
+      const streams = [{stream, level: 'info'},{stream: pretty({ colorize: true,translateTime: true }),level: 'info'}]
+
+      const logger = pino({},
+         multistream(streams))
+
+      logger.info({ obj: 42, b: 2 }, 'hello world')
+      logger.error('the answer is %d', 42)
+
+      console.log('original')
    })
 })
 

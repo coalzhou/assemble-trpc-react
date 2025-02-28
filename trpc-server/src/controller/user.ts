@@ -105,8 +105,10 @@ class UserObj{
    age?: number
    realName?: string
 }
-export const createUser = userProcedure.input(z.instanceof(UserObj)).mutation(async ({input}) => {
-   const user = await User.create({username:'tony', age: 19})
-   console.log(input)
-   return JSON.stringify(user)
+export const createUser = userProcedure.mutation(async ({input}) => {
+   require('dotenv').config()
+   const path = process.env.API_URL
+   //const user = await User.create({username:'tony', age: 19})
+   console.log(path)
+   return 'hello' as const
 })

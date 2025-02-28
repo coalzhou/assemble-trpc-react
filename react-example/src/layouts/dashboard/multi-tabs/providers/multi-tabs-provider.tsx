@@ -43,6 +43,7 @@ export function MultiTabsProvider({ children }: { children: React.ReactNode }) {
 			}
 
 			const isExisted = filtered.find((item) => item.key === key);
+
 			if (!isExisted) {
 				return [
 					...filtered,

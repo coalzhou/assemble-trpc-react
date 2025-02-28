@@ -49,10 +49,6 @@ function LoginForm() {
 										{DEFAULT_USER.username} / {TEST_USER.username}
 									</span>
 								</div>
-								<div className="flex">
-									<span className="flex-shrink-0 text-text-disabled">{t("sys.login.password")}:</span>
-									<span className="ml-1 text-text-secondary">{DEFAULT_USER.password}</span>
-								</div>
 							</div>
 						}
 						showIcon
@@ -86,7 +82,7 @@ function LoginForm() {
 				</Form.Item>
 				<Form.Item>
 					<Button type="primary" htmlType="submit" className="w-full" loading={loading}>
-						{t("sys.login.loginButton")}
+						Sign in
 					</Button>
 				</Form.Item>
 

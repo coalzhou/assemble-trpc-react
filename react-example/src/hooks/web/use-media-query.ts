@@ -84,6 +84,7 @@ export const useMediaQuery = (config: MediaQueryConfig | string) => {
 	useEffect(() => {
 		// 客户端渲染时立即检查当前状态
 		const mediaQuery = window.matchMedia(mediaQueryString);
+
 		setMatches(mediaQuery.matches);
 
 		// 监听变化
