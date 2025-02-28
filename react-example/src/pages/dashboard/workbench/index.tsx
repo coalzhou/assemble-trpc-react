@@ -31,6 +31,11 @@ import {
 	Popper,
 	InputBase,
 	Box,
+	Dialog,
+	DialogTitle,
+	DialogActions,
+	DialogContent,
+	DialogContentText
 } from "@mui/material";
 import * as React from "react";
 import { useState, Fragment } from "react";
@@ -411,6 +416,7 @@ function Workbench() {
 		handleSubmit,
 		formState: { errors },
 		setValue: setValue1,
+		watch
 	} = useForm({
 		defaultValues: defaultObj,
 	});
@@ -427,20 +433,25 @@ function Workbench() {
 	const login = async () => {
 		await trpcClient.user.login.query({username:'tony', password:'123456'})
 	}
-	class UserObj{
-		id?: number
-		username?: string
-		password?: string
-		age?: number
-		realName?: string
-	}
+
+	const [dialogVisible, setDialogVisible] = useState<boolean>(false)
+	const [dialogMsg, setDialogMsg] = useState('')
+	const handleDialogClose = () => setDialogVisible(false)
 	const createUser = async () =>{
+		 const  [username]= watch(['name']);
+		const res: object | {readonly code: number;readonly msg: string; } = await trpcClient.user.createUser.mutate({username})
+		if('code' in res && res.code !== 200){
+			setDialogVisible(true)
+			setDialogMsg(res.msg || 'unknows error')
+		}else{
+			setDialogVisible(true)
+			setDialogMsg('user is created successfully')
+		}
 
-		let user = new UserObj()
+		/*let user = new UserObj()
 		user.username = 'jack'
+		const res = await trpcClient.user.createUser.mutate(user)*/
 
-		const res = await trpcClient.user.createUser.mutate(user)
-		console.log(res)
 	}
 	return (
 		<div className="p-2">
@@ -511,6 +522,28 @@ function Workbench() {
 					</TableBody>
 				</Table>
 			</TableContainer>
+
+			<Dialog
+				open={dialogVisible}
+				onClose={handleDialogClose}
+				aria-labelledby="alert-dialog-title"
+				aria-describedby="alert-dialog-description"
+			>
+				<DialogTitle id="alert-dialog-title">
+					{"info"}
+				</DialogTitle>
+				<DialogContent>
+					<DialogContentText id="alert-dialog-description">
+						{dialogMsg}
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleDialogClose}>ok</Button>
+
+				</DialogActions>
+			</Dialog>
+
+
 		</div>
 	);
 	/*return (
