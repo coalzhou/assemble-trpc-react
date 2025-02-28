@@ -8,6 +8,7 @@ const { tmpdir } = require('node:os')
 const { join } = require('node:path')
 const pretty = require('pino-pretty')
 const multistream = require('pino-multi-stream').multistream
+import moment from 'moment'
 
 describe('test001', () => {
    test('test002', async () => {
@@ -42,15 +43,25 @@ describe('test001', () => {
    })
    test('test005', ()=>{
       //console.log(tmpdir())
-      const stream = rfs.createStream('trpc-logger.log',{
+      const pad = num => (num > 9?"":"0") + num
+      const generator = (time, index) =>{
+         if(!time) return "trpc-logger.log"
+         let month = time.getFullYear() + pad(time.getMonth() + 1)
+         let day = pad(time.getDate())
+        return `${month}-${day}-trpc-logger.log`
+      }
+      const stream = rfs.createStream(generator,{
          size: '10M',
          interval: "1d",
          path: "./logs"
       })
-      // process.stdout
-      const streams = [{stream, level: 'info'},{stream: pretty({ colorize: true,translateTime: true }),level: 'info'}]
+      // process.stdout   pretty({ colorize: true,translateTime: true })
+      const streams = [{stream, level: 'info'},{stream: process.stdout,level: 'info'}]
 
-      const logger = pino({},
+      const logger = pino({
+            level:"info",
+            timestamp: ()=>moment().format('YYYY-MM-DD HH:mm:ss'),
+         },
          multistream(streams))
 
       logger.info({ obj: 42, b: 2 }, 'hello world')
