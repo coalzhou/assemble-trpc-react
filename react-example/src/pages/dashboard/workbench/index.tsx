@@ -35,7 +35,10 @@ import {
 	DialogTitle,
 	DialogActions,
 	DialogContent,
-	DialogContentText
+	DialogContentText,
+	Grid2 as Grid,
+	Typography,
+	Stack
 } from "@mui/material";
 import * as React from "react";
 import { useState, Fragment } from "react";
@@ -45,8 +48,9 @@ import Autocomplete, { type AutocompleteCloseReason, autocompleteClasses } from 
 import { Settings as SettingsIcon, Close as CloseIcon, Done as DoneIcon } from "@mui/icons-material";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import trpcClient from '@/utils/trpc'
-
-
+import MainCard from '@/components/MainCard'
+import MonthlyBarChart from './component/MonthlyBarChart'
+import OrdersTable from './component/OrdersTable'
 
 interface User {
 	name: string;
@@ -542,7 +546,40 @@ function Workbench() {
 
 				</DialogActions>
 			</Dialog>
+			<Grid container rowSpacing={4.5} columnSpacing={2.75}>
+				<Grid size={{ xs: 12, md: 5, lg: 4 }}>
+					<Grid container alignItems="center" justifyContent="space-between">
+						<Grid>
+							<Typography variant="h5">Income Overview</Typography>
+						</Grid>
+						<Grid />
+					</Grid>
+					<MainCard sx={{ mt: 2 }} content={false}>
+						<Box sx={{ p: 3, pb: 0 }}>
+							<Stack sx={{ gap: 2 }}>
+								<Typography variant="h6" color="text.secondary">
+									This Week Statistics
+								</Typography>
+								<Typography variant="h3">$7,650</Typography>
+							</Stack>
+						</Box>
+						<MonthlyBarChart />
+					</MainCard>
+				</Grid>
+				<Grid size={{ xs: 12, md: 7, lg: 8 }}>
+					<Grid container alignItems="center" justifyContent="space-between">
+						<Grid>
+							<Typography variant="h5">Recent Orders</Typography>
+						</Grid>
+						<Grid />
+					</Grid>
+					<MainCard sx={{ mt: 2 }} content={false}>
+						<OrdersTable />
+					</MainCard>
+				</Grid>
 
+
+			</Grid>
 
 		</div>
 	);
