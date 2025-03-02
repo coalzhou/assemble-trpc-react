@@ -26,6 +26,7 @@
    "dependencies": {
       "@trpc/client": "11.0.0-rc.800",
       "@trpc/server": "11.0.0-rc.800",
+      "aws-sdk": "^2.1692.0",
       "bcryptjs": "^3.0.2",
       "cookie-parser": "^1.4.6",
       "cors": "^2.8.5",
