@@ -38,7 +38,7 @@ import {
 	DialogContentText,
 	Grid2 as Grid,
 	Typography,
-	Stack
+	Stack,Alert,Avatar
 } from "@mui/material";
 import * as React from "react";
 import { useState, Fragment } from "react";
@@ -51,6 +51,7 @@ import trpcClient from '@/utils/trpc'
 import MainCard from '@/components/MainCard'
 import MonthlyBarChart from './component/MonthlyBarChart'
 import OrdersTable from './component/OrdersTable'
+import { red } from '@mui/material/colors';
 
 interface User {
 	name: string;
@@ -97,7 +98,8 @@ function Workbench() {
 		open: boolean;
 	}
 
-	const StyledAutocompletePopper = styled("div")(({ theme }) => ({
+	const StyledAutocompletePopper = styled("div")(({ theme }) => {
+		return ({
 		[`& .${autocompleteClasses.paper}`]: {
 			boxShadow: "none",
 			margin: 0,
@@ -129,7 +131,7 @@ function Workbench() {
 		[`&.${autocompleteClasses.popperDisablePortal}`]: {
 			position: "relative",
 		},
-	}));
+	})});
 
 	function PopperComponent(props: PopperComponentProps) {
 		const { disablePortal, anchorEl, open, ...other } = props;
@@ -459,6 +461,11 @@ function Workbench() {
 	}
 	return (
 		<div className="p-2">
+			<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+				R
+			</Avatar>
+			<Alert sx={{ bgcolor: 'text.secondary' }} />
+			<Button color="primary">Secondary</Button>
 			<div className="mt-2">
 				<form>
 					<FormControl>
