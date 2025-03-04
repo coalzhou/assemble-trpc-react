@@ -30,4 +30,6 @@ export const initializeTrpc = async (app: Application) => {
          middleware: cors()
       })
    )
+
+
 }
